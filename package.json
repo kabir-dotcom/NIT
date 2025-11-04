@@ -1,0 +1,19 @@
+{
+  "name": "natural-immunotherapy",
+  "version": "1.0.0",
+  "description": "Modern starter kit for a Natural Immunotherapy platform built with the MERN stack, Tailwind CSS, and Vite.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
