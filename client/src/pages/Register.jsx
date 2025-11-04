@@ -67,7 +67,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-primary-50 via-slate-50 to-accent-100 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-[#0a7020] via-[#0c881f] to-[#064d14] px-4">
       <div className="w-full max-w-lg rounded-3xl bg-white p-8 shadow-xl shadow-primary-100">
         <h1 className="text-2xl font-semibold text-slate-900">Create a Patient Account</h1>
         <p className="mt-2 text-sm text-slate-500">Register to access your personalized immunotherapy dashboard.</p>
