@@ -34,6 +34,27 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api', routes);
 
+const clientDistPath = path.join(__dirname, '..', '..', 'client', 'dist');
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(clientDistPath));
+
+  app.get('*', (req, res, next) => {
+    if (req.originalUrl.startsWith('/api')) {
+      return next();
+    }
+
+    return res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+} else {
+  app.get('/', (_req, res) => {
+    res.status(200).json({
+      message: 'Natural Immunotherapy API is running',
+      docs: '/api/health',
+    });
+  });
+}
+
 app.use(notFound);
 app.use(errorHandler);
 
