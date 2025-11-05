@@ -13,7 +13,7 @@ const footerLinks = [
 
 const contactDetails = [
   { label: 'Headquarters', value: 'Kolkata, India' },
-  { label: 'Helpline', value: '+91 XXXXX XXXXX' },
+  { label: 'Helpline', value: '+91 9800808595' },
   { label: 'Email', value: 'info@nit.care', href: 'mailto:info@nit.care' },
   { label: 'Website', value: 'www.nit.care', href: 'https://www.nit.care' },
 ];

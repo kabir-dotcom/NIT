@@ -1,16 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import About from './pages/About';
 import Diseases from './pages/Diseases';
 import Boosters from './pages/Boosters';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -24,16 +20,6 @@ function App() {
           <Route path="/boosters" element={<Boosters />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

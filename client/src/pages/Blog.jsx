@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import BlogCard from '../components/BlogCard';
 import { fetchBlogPosts } from '../services/api';
 
 const Blog = () => {
@@ -41,7 +42,7 @@ const Blog = () => {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-semibold text-slate-900">Blog & Research</h1>
         <p className="mt-4 text-sm text-slate-600">
           Stay current on detox strategies, immune modulation, and resilience coaching with insights from our clinical
@@ -52,12 +53,10 @@ const Blog = () => {
         ) : (
           <>
             {error && <p className="mt-8 rounded-lg bg-amber-50 p-4 text-sm text-amber-700">{error}</p>}
-            <ul className="mt-10 space-y-6">
+            <ul className="mt-10 grid grid-cols-1 gap-8 xl:grid-cols-2">
               {posts.map(post => (
-                <li key={post.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-                  <h2 className="text-xl font-semibold text-slate-900">{post.title}</h2>
-                  <p className="mt-3 text-sm text-slate-600">{post.excerpt}</p>
-                  <span className="mt-4 inline-flex text-sm font-semibold text-primary-500">Read more</span>
+                <li key={post.id} className="h-full">
+                  <BlogCard {...post} />
                 </li>
               ))}
             </ul>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import nitLogoGreen from '../assets/photo/NIT final.png';
 import nitLogoWhite from '../assets/photo/NIT white.png';
@@ -13,23 +13,6 @@ const navItems = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    () => typeof window !== 'undefined' && !!localStorage.getItem('token')
-  );
-
-  useEffect(() => {
-    const syncAuthStatus = () => {
-      setIsAuthenticated(typeof window !== 'undefined' && !!localStorage.getItem('token'));
-    };
-
-    window.addEventListener('storage', syncAuthStatus);
-    window.addEventListener('auth-change', syncAuthStatus);
-
-    return () => {
-      window.removeEventListener('storage', syncAuthStatus);
-      window.removeEventListener('auth-change', syncAuthStatus);
-    };
-  }, []);
 
   const toggleMenu = () => setIsOpen(prev => !prev);
 
@@ -54,8 +37,8 @@ const Navbar = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="mx-auto flex max-w-8xl items-center justify-between border-b-2 border-[#0d7120]/40 px-4 py-4 sm:px-12 lg:px-8">
+    <header className="sticky top-0 z-50 bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between border-b border-[#0d7120] px-5 py-4 sm:px-12 lg:px-10">
         <Link to="/" className="flex items-center">
           <img
             src={nitLogoGreen}
@@ -75,8 +58,8 @@ const Navbar = () => {
               to={item.path}
               className={({ isActive }) =>
                 [
-                  'group flex items-center gap-2 whitespace-nowrap text-[0.68rem] font-semibold tracking-[0.32em] uppercase transition-colors',
-                  isActive ? 'text-[#0c7b22]' : 'text-slate-900 hover:text-[#0c7b22]',
+                  'group flex items-center gap-2 whitespace-nowrap text-sm font-semibold tracking-[0.25em] uppercase transition-colors',
+                  isActive ? 'text-[#0a7c1b]' : 'text-slate-900 hover:text-[#0a7c1b]',
                 ].join(' ')
               }
               onClick={closeMenu}
@@ -87,8 +70,8 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-5 pl-4 md:flex">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#1c8c28] text-white shadow-[0_8px_16px_rgba(12,99,24,0.35)]">
+        <div className="hidden items-center gap-5 pl-6 md:flex">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0a7c1b] text-white shadow-[0_8px_16px_rgba(12,99,24,0.28)]">
             <svg
               className="h-5 w-5"
               viewBox="0 0 24 24"
@@ -118,7 +101,7 @@ const Navbar = () => {
           </span>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 whitespace-nowrap rounded-full bg-gradient-to-r from-[#0a7020] via-[#0c881f] to-[#064d14] px-6 py-2 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(7,71,21,0.32)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgba(7,71,21,0.4)] font-montserrat"
+            className="inline-flex items-center gap-3 whitespace-nowrap rounded-full bg-gradient-to-r from-[#005E05] via-[#0a7c1b] to-[#064d14] px-7 py-2 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(7,71,21,0.32)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgba(7,71,21,0.4)] font-montserrat"
           >
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-white/18">
               <svg
@@ -143,29 +126,6 @@ const Navbar = () => {
                 aria-hidden="true"
               >
                 <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-          </Link>
-          <Link
-            to={isAuthenticated ? '/dashboard' : '/login'}
-            className="inline-flex items-center gap-3 whitespace-nowrap rounded-full bg-gradient-to-r from-[#0a7020] via-[#0c881f] to-[#064d14] px-6 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_14px_28px_rgba(7,71,21,0.25)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_32px_rgba(7,71,21,0.32)] font-montserrat"
-          >
-            <span>{isAuthenticated ? 'Dashboard' : 'Patient Portal'}</span>
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
-              <svg
-                className="h-3 w-3"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="m6 3 5 5-5 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
               </svg>
             </span>
           </Link>
@@ -201,15 +161,15 @@ const Navbar = () => {
 
       {isOpen && (
         <div className="md:hidden">
-          <nav className="space-y-1 border-t border-primary-500/20 bg-white px-4 py-4 font-inter">
+          <nav className="space-y-1 border-t border-[#0d7120]/20 bg-white px-4 py-4 font-inter">
             {navItems.map(item => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
                   [
-                    'flex items-center justify-between rounded-md px-3 py-2 text-base font-semibold uppercase tracking-[0.2em]',
-                    isActive ? 'bg-primary-50 text-primary-500' : 'text-slate-700 hover:bg-primary-50 hover:text-primary-500',
+                    'flex items-center justify-between rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-[0.22em]',
+                    isActive ? 'bg-[#e6f6ea] text-[#0a7c1b]' : 'text-slate-700 hover:bg-[#eef9f1] hover:text-[#0a7c1b]',
                   ].join(' ')
                 }
                 onClick={closeMenu}
@@ -234,15 +194,6 @@ const Navbar = () => {
                 <path d="m6 3 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
-            <div className="mt-4 rounded-md border border-primary-100 bg-primary-50 px-3 py-2 text-sm text-primary-800">
-              <Link
-                to={isAuthenticated ? '/dashboard' : '/login'}
-                onClick={closeMenu}
-                className="font-semibold underline decoration-primary-500"
-              >
-                {isAuthenticated ? 'Go to Dashboard' : 'Patient Portal Login'}
-              </Link>
-            </div>
           </nav>
         </div>
       )}

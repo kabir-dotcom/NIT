@@ -171,7 +171,7 @@ const Register = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full rounded-full bg-primary-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary-200 transition hover:-translate-y-0.5 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-300 disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full rounded-full bg-gradient-to-r from-[#0a7020] via-[#0c881f] to-[#064d14] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(7,71,21,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgba(7,71,21,0.36)] focus:outline-none focus:ring-2 focus:ring-[#0c881f]/40 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isLoading ? 'Creating account...' : 'Register'}
           </button>
